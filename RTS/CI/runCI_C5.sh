@@ -1,7 +1,10 @@
 #!/bin/bash
-# This script will run all CI tests on c5 
+# This script will run all CI tests on c5
+# Modify ACCOUNT to be your group
+# Modify BUILDDIR to be where you have cloned the SHiELD_build repository
 
 export COMPILER="intel"
+export COMP="repro"
 ACCOUNT="gfdl_f"
 export BUILDDIR="/ncrc/home1/${USER}/SHiELD_dev_ifx/SHiELD_build"
 RELEASE="`cat ${BUILDDIR}/../SHiELD_SRC/release`"
