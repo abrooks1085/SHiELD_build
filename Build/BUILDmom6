@@ -42,7 +42,7 @@ set -x
           fi
           shift # Remove COMP from processing
           ;;
-          intel|gnu)
+          intel|intel-oneapi|gnu)
              COMPILER="${arg#*=}"
              shift # Remove "compiler" from processing
              ;;
@@ -52,7 +52,7 @@ set -x
           fi
           echo -e ' '
           echo -e "valid options are:"
-          echo -e "\t[intel(D) | gnu] \t\t\t compiler"
+          echo -e "\t[intel(D) | intel-oneapi | gnu] \t\t\t compiler"
           echo -e "\t[prod(D) | repro | debug] \t\t compiler option settings"
           echo -e "\n"
           exit

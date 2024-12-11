@@ -37,7 +37,7 @@ version_w3nco="v2.4.1"
   for arg in "$@"
   do
       case $arg in
-          intel|gnu|nvhpc)
+          intel|intel-oneapi|gnu|nvhpc)
              compiler="${arg#*=}"
              shift # Remove "compiler" from processing
              ;;
@@ -51,13 +51,20 @@ version_w3nco="v2.4.1"
           fi
           echo -e ' '
           echo -e "valid options are:"
-          echo -e "\t[intel(D) | gnu | nvhpc] \t\t\t compiler"
+          echo -e "\t[intel(D) | intel-oneapi | gnu | nvhpc] \t\t\t compiler"
           echo -e "\t[nopic(D) | pic] \t\t\t whether to build all components with the -fPIC flag (position independent code)"
           echo -e "\n"
           exit
           ;;
       esac
   done
+
+# When testing a build with icx nceplibs would not build
+# Workaround is to build with icc 
+if [ ${compiler} = 'intel-oneapi' ] ; then
+   . ${BUILD_ROOT}/site/environment.intel.sh
+fi
+
 
 # set up some default variables if not called from COMPILE
 # NCEP_DIR is set if this script is called from the COMPILE script
@@ -118,3 +125,9 @@ mv $nceplibs_dir/NCEPLIBS-w3emc/install/lib/libw3emc_d.a $nceplibs_dir/.
 mv $nceplibs_dir/NCEPLIBS-w3nco/install/lib/libw3nco_d.a $nceplibs_dir/.
 
 \rm -rf NCEPLIBS-bacio NCEPLIBS-sp NCEPLIBS-w3emc NCEPLIBS-w3nco
+
+# When testing a build with icx nceplibs would not build
+# Workaround is to build with icc
+if [ ${compiler} = 'intel-oneapi' ] ; then
+   . ${BUILD_ROOT}/site/environment.intel-oneapi.sh
+fi

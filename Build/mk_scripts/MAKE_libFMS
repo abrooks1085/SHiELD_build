@@ -37,7 +37,7 @@ pic="nopic"
 for arg in "$@"
 do
     case $arg in
-        intel|gnu|nvhpc)
+        intel|intel-oneapi|gnu|nvhpc)
         COMPILER="${arg#*=}"
         shift # Remove compiler from processing
         ;;

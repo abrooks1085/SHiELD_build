@@ -1,9 +1,9 @@
 #!/bin/tcsh
 #SBATCH --output=./stdout/%x.%j
 #SBATCH --job-name=X-SHiELD
-#SBATCH --clusters=c4
+#SBATCH --clusters=c5
 #SBATCH --time=03:00:00
-#SBATCH --nodes=331
+#SBATCH --nodes=93
 #SBATCH --exclusive
 
 # change c4 to c5 and set nodes to 93 for c5
@@ -11,9 +11,10 @@
 
 set echo
 
-set BASEDIR    = "${SCRATCH}/${USER}/"
-set INPUT_DATA = "/lustre/f2/pdata/gfdl/gfdl_W/fvGFS_INPUT_DATA"
-set BUILD_AREA = "/ncrc/home1/${USER}/SHiELD_dev/SHiELD_build/"
+set YourGroup  = "gfdl_f"
+set BASEDIR    = "/gpfs/f5/${YourGroup}/scratch/${USER}/"
+set INPUT_DATA = "/gpfs/f5/gfdl_w/proj-shared/fvGFS_INPUT_DATA"
+set BUILD_AREA = "/ncrc/home1/${USER}/SHiELD_dev_ifx/SHiELD_build/"
 
 if ( ! $?COMPILER ) then
   set COMPILER = "intel"
@@ -52,7 +53,7 @@ set EXE = "x"
 
 
 # directory structure
-set WORKDIR    = ${BASEDIR}/SHiELD_${RELEASE}/${NAME}.${CASE}.${TYPE}.${COMP}.${MODE}.${COMPILER}.${MONO}.${MEMO}/
+set WORKDIR    = ${BASEDIR}/SHiELD_ifx_${RELEASE}/${NAME}.${CASE}.${TYPE}.${COMP}.${MODE}.${COMPILER}.${MONO}.${MEMO}/
 set executable = ${BUILD_AREA}/Build/bin/SHiELD_${TYPE}.${COMP}.${MODE}.${COMPILER}.${EXE}
 
 
