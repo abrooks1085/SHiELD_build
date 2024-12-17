@@ -66,11 +66,11 @@ switch ($hostname)
       module rm gcc
       module load intel-classic/2023.2.0
       module unload cray-libsci
-      module load cray-hdf5/1.12.2.11
-      module load cray-netcdf/4.9.0.11
+      module load cray-hdf5
+      module load cray-netcdf
       module load craype-hugepages4M
-      module load cmake/3.23.1
-      module load libyaml/0.2.5
+      module load cmake
+      module load libyaml
 
       # Needed with the new Environment on C5 as of 10/16/2024
       setenv FI_VERBS_PREFER_XRC 0
