@@ -61,9 +61,7 @@ version_w3nco="v2.4.1"
 
 # When testing a build with icx nceplibs would not build
 # Workaround is to build with icc 
-if [ ${compiler} = 'intel-oneapi' ] ; then
-   . ${BUILD_ROOT}/site/environment.intel.sh
-fi
+  module load intel-classic/2023.2.0
 
 
 # set up some default variables if not called from COMPILE
@@ -130,4 +128,6 @@ mv $nceplibs_dir/NCEPLIBS-w3nco/install/lib/libw3nco_d.a $nceplibs_dir/.
 # Workaround is to build with icc
 if [ ${compiler} = 'intel-oneapi' ] ; then
    . ${BUILD_ROOT}/site/environment.intel-oneapi.sh
+else
+   . ${BUILD_ROOT}/site/environment.intel.sh
 fi
